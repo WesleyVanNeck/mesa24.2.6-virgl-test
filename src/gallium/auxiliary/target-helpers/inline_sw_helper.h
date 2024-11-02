@@ -79,19 +79,20 @@ sw_screen_create_named(struct sw_winsys *winsys, const char *driver)
 #endif
 
 #if defined(GALLIUM_FREEDRENO)
-   if(screen == NULL && strcmp(driver, "freedreno") == 0) {
+   if (screen == NULL && strcmp(driver, "freedreno") == 0) {
       int kbase_device_fd = open("/dev/kgsl-3d0", O_RDWR | O_CLOEXEC | O_NONBLOCK);
-      if (kbase_device_fd == -1) { 
+      if (kbase_device_fd == -1) {
          printf("FD_OSMESA: Failed to open kbase device: %s", strerror(errno));
-      } else {
-         struct pipe_screen_config dummy_cfg = { NULL, NULL };
-         screen = fd_screen_create(kbase_device_fd, &dummy_cfg, NULL);
+         return NULL;
       }
+      struct pipe_screen_config dummy_cfg = { NULL, NULL };
+      // screen = fd_screen_create(kbase_device_fd, &dummy_cfg, NULL);
+      screen = fd_screen_create(3, &dummy_cfg, NULL);
    }
 #endif
 
 #if defined(GALLIUM_PANFROST)
-   if(screen == NULL && strcmp(driver, "panfrost") == 0) {
+   if (screen == NULL && strcmp(driver, "panfrost") == 0) {
       int kbase_device_fd = open("/dev/mali0", O_RDWR | O_CLOEXEC | O_NONBLOCK);
       if (kbase_device_fd == -1) { 
          printf("PAN_OSMESA: Failed to open kbase device: %s", strerror(errno));
