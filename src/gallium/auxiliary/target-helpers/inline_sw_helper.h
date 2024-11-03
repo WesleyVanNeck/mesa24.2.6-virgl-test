@@ -84,7 +84,8 @@ sw_screen_create_named(struct sw_winsys *winsys, const char *driver)
        * if (kbase_device_fd == -1) {
        *    printf("FD_OSMESA: Failed to open kbase device: %s", strerror(errno));
        *    return NULL;
-       */}
+       * }
+       */
       struct pipe_screen_config dummy_cfg = { NULL, NULL };
       // screen = fd_screen_create(kbase_device_fd, &dummy_cfg, NULL);
       screen = fd_screen_create(3, &dummy_cfg, NULL);
@@ -97,7 +98,8 @@ sw_screen_create_named(struct sw_winsys *winsys, const char *driver)
        * if (kbase_device_fd == -1) { 
        *    printf("PAN_OSMESA: Failed to open kbase device: %s", strerror(errno));
        *    return NULL;
-       */}
+       * }
+       */
       struct pipe_screen_config dummy_cfg = { NULL, NULL };
       // screen = panfrost_create_screen(kbase_device_fd, &dummy_cfg, NULL);
       screen = panfrost_create_screen(3, &dummy_cfg, NULL);
