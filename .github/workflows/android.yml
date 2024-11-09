@@ -23,6 +23,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y libxrandr-dev llvm libxxf86vm-dev libxcb-*-dev libx11-xcb-dev libxfixes-dev libdrm-dev libx11-dev
+          export PATH=/lib/llvm/bin:$PATH
+          export PATH="/usr/local/opt/llvm/bin:$PATH"
           pip3 install mako meson ninja
           export ANDROID_NDK_HOME="$ANDROID_SDK_ROOT/ndk-bundle"
           envsubst <android-drm-${{matrix.arch}} >build-crossfile-drm
